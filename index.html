@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anuranjkrishna K — Full Stack Developer</title>
+<meta name="description" content="Anuranjkrishna K — Full Stack Developer (Python, Django, React.js). Projects, experience, and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1620;
+    --bg-panel:#141d2b;
+    --bg-panel-2:#182233;
+    --line:#28344a;
+    --text:#e9e6dd;
+    --text-muted:#93a0b3;
+    --accent:#d8a34d;
+    --accent-soft:#d8a34d1a;
+    --teal:#5aab9c;
+    --teal-soft:#5aab9c1a;
+    --radius:10px;
+    --maxw:760px;
+    --font-body:'Inter',system-ui,-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  ::selection{background:var(--accent-soft); color:var(--accent);}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(15,22,32,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    font-family:var(--font-mono);
+    font-size:14px;
+    color:var(--accent);
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .brand span{color:var(--text-muted);}
+  nav.routes{
+    display:flex;
+    gap:4px;
+    font-family:var(--font-mono);
+    font-size:13px;
+    overflow-x:auto;
+  }
+  nav.routes a{
+    text-decoration:none;
+    color:var(--text-muted);
+    padding:6px 10px;
+    border-radius:6px;
+    white-space:nowrap;
+    transition:color .15s ease, background .15s ease;
+  }
+  nav.routes a:hover, nav.routes a.active{
+    color:var(--text);
+    background:var(--bg-panel-2);
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{
+    padding:72px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  .route-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--teal);
+    margin-bottom:20px;
+  }
+  .method{
+    background:var(--teal-soft);
+    color:var(--teal);
+    padding:2px 8px;
+    border-radius:5px;
+    font-weight:600;
+  }
+  .method.post{
+    background:var(--accent-soft);
+    color:var(--accent);
+  }
+
+  h1,h2,h3{
+    font-family:var(--font-body);
+    font-weight:700;
+    line-height:1.2;
+    margin:0 0 16px 0;
+  }
+  h2{font-size:28px;}
+  p{color:var(--text-muted); margin:0 0 16px 0;}
+  p:last-child{margin-bottom:0;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding-top:88px;}
+  .hero-top{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:24px;
+  }
+  .avatar{
+    width:84px;
+    height:84px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--line);
+    flex-shrink:0;
+  }
+  .hero h1{
+    font-size:38px;
+    color:var(--text);
+    max-width:22ch;
+  }
+  .hero .lede{
+    font-size:17px;
+    max-width:52ch;
+    margin-bottom:28px;
+  }
+  .json-block{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--text-muted);
+    margin-bottom:28px;
+    overflow-x:auto;
+    white-space:pre;
+  }
+  .json-block .k{color:var(--teal);}
+  .json-block .v{color:var(--accent);}
+  .json-block .punct{color:var(--text-muted);}
+
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:28px;
+  }
+  .btn{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    padding:11px 20px;
+    border-radius:8px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .12s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{
+    background:var(--accent);
+    color:#1a1206;
+    border:1px solid var(--accent);
+  }
+  .btn-primary:hover{background:#e8b562;}
+  .btn-ghost{
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--text-muted);}
+
+  .contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    font-family:var(--font-mono);
+    font-size:13px;
+  }
+  .contact-links a{text-decoration:none; color:var(--text-muted); border-bottom:1px solid transparent;}
+  .contact-links a:hover{color:var(--text); border-color:var(--text-muted);}
+
+  /* ---------- Stats ---------- */
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:32px;
+  }
+  .stat{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-size:24px;
+    color:var(--accent);
+    display:block;
+    margin-bottom:4px;
+  }
+  .stat .label{
+    font-size:13px;
+    color:var(--text-muted);
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-group{margin-bottom:24px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group h3{
+    font-family:var(--font-mono);
+    font-size:13px;
+    font-weight:500;
+    color:var(--text-muted);
+    margin-bottom:10px;
+  }
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--text);
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    padding:6px 11px;
+    border-radius:6px;
+  }
+
+  /* ---------- Experience ---------- */
+  .job{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .job:first-of-type{border-top:none; padding-top:0;}
+  .job-meta{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--text-muted);
+  }
+  .job-meta .status{color:var(--teal); display:block; margin-bottom:6px;}
+  .job h3{font-size:16px; margin-bottom:2px;}
+  .job .co{color:var(--text-muted); font-size:14px; margin-bottom:10px; display:block;}
+  .job ul{margin:0; padding-left:18px; color:var(--text-muted); font-size:14.5px;}
+  .job li{margin-bottom:6px;}
+  .job li:last-child{margin-bottom:0;}
+
+  /* ---------- Projects ---------- */
+  .project-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    margin-bottom:16px;
+  }
+  .project-card:last-child{margin-bottom:0;}
+  .project-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:8px;
+  }
+  .project-head h3{font-size:17px; margin:0;}
+  .badge{
+    font-family:var(--font-mono);
+    font-size:11px;
+    padding:3px 8px;
+    border-radius:5px;
+    white-space:nowrap;
+    margin-top:2px;
+  }
+  .badge.live{background:var(--teal-soft); color:var(--teal);}
+  .badge.built{background:var(--accent-soft); color:var(--accent);}
+  .stack-line{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--text-muted);
+    margin-bottom:10px;
+  }
+  .project-card p{font-size:14.5px; margin-bottom:14px;}
+  .project-links{display:flex; gap:16px; font-family:var(--font-mono); font-size:13px;}
+  .project-links a{text-decoration:none; color:var(--accent); border-bottom:1px solid transparent;}
+  .project-links a:hover{border-color:var(--accent);}
+
+  .project-shot{
+    width:100%;
+    border-radius:7px;
+    border:1px solid var(--line);
+    display:block;
+    margin-bottom:14px;
+  }
+  .case-study{
+    margin-top:14px;
+    border-top:1px solid var(--line);
+    padding-top:2px;
+  }
+  .case-study summary{
+    cursor:pointer;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--teal);
+    padding:10px 0;
+    list-style:none;
+  }
+  .case-study summary::-webkit-details-marker{display:none;}
+  .case-study summary::before{content:'+ '; }
+  .case-study[open] summary::before{content:'– ';}
+  .case-study .cs-row{margin-bottom:10px;}
+  .case-study .cs-row:last-child{margin-bottom:0;}
+  .case-study .cs-label{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--text-muted);
+    display:block;
+    margin-bottom:3px;
+  }
+  .case-study .cs-row p{font-size:13.5px; margin:0;}
+
+  /* ---------- Education ---------- */
+  .edu-item{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .edu-item:first-child{border-top:none; padding-top:0;}
+  .edu-item .school{color:var(--text-muted); font-size:14px;}
+  .edu-item .when{font-family:var(--font-mono); font-size:12.5px; color:var(--text-muted); white-space:nowrap;}
+
+  /* ---------- Contact ---------- */
+  form.contact-form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    max-width:480px;
+  }
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--text-muted);
+  }
+  .field input, .field textarea{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:11px 13px;
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:14.5px;
+    resize:vertical;
+  }
+  .field input:focus, .field textarea:focus{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+    border-color:var(--accent);
+  }
+  .field textarea{min-height:110px;}
+  .form-note{font-size:12.5px; color:var(--text-muted); margin-top:4px;}
+  .form-status{font-family:var(--font-mono); font-size:13px; margin-top:4px; display:none;}
+  .form-status.ok{color:var(--teal); display:block;}
+  .form-status.err{color:#d87d5a; display:block;}
+
+  a.btn:focus-visible, nav.routes a:focus-visible, .field input:focus-visible, .field textarea:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  footer{
+    padding:32px 0 48px;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--text-muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  @media (max-width: 600px){
+    .avatar{width:64px; height:64px;}
+    .hero h1{font-size:29px;}
+    .stat-row{grid-template-columns:1fr; }
+    .job{grid-template-columns:1fr;}
+    .job-meta .status{margin-bottom:2px;}
+    nav.routes{font-size:12px;}
+    .nav-inner{padding:14px 18px;}
+    section{padding:52px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">~/anuranjkrishna<span>.dev</span></a>
+    <nav class="routes" id="routeNav">
+      <a href="#about">/about</a>
+      <a href="#skills">/skills</a>
+      <a href="#experience">/experience</a>
+      <a href="#work">/work</a>
+      <a href="#contact">/contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-top">
+      <img class="avatar" src="images/profile.jpg" alt="Anuranjkrishna K">
+      <div class="route-tag" style="margin-bottom:0;"><span class="method">GET</span> /anuranjkrishna</div>
+    </div>
+    <h1>Full-stack developer who ships backend APIs and the frontends that use them.</h1>
+    <p class="lede">Two years building production web apps end-to-end — Django REST Framework on the backend, React on the frontend, deployed and actually reachable on the internet, not just running on localhost.</p>
+
+    <div class="json-block" aria-hidden="true">{
+  <span class="k">"name"</span><span class="punct">:</span> <span class="v">"Anuranjkrishna K"</span><span class="punct">,</span>
+  <span class="k">"role"</span><span class="punct">:</span> <span class="v">"Full Stack Developer"</span><span class="punct">,</span>
+  <span class="k">"stack"</span><span class="punct">:</span> [<span class="v">"Python"</span><span class="punct">,</span> <span class="v">"Django"</span><span class="punct">,</span> <span class="v">"React.js"</span>]<span class="punct">,</span>
+  <span class="k">"status"</span><span class="punct">:</span> <span class="v">200</span><span class="punct">,</span>
+  <span class="k">"open_to_work"</span><span class="punct">:</span> <span class="v">true</span>
+}</div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#work">View work</a>
+      <a class="btn btn-ghost" href="Anuranjkrishna_K_Resume.pdf" download>Download resume</a>
+    </div>
+
+    <div class="contact-links">
+      <a href="mailto:anuranjkrishnakadankodan@gmail.com">anuranjkrishnakadankodan@gmail.com</a>
+      <a href="tel:+919497419238">+91 94974 19238</a>
+      <a href="https://github.com/anuranjkrishna" target="_blank" rel="noopener">github.com/anuranjkrishna</a>
+      <a href="https://www.linkedin.com/in/anuranjkrishna-k-82619740a/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="route-tag"><span class="method">GET</span> /about</div>
+    <h2>About</h2>
+    <p>I design and ship full-stack applications — secure REST APIs with Django REST Framework, JWT authentication, role-based access control, and React frontends on top. Most recently at METXR Studios, where I worked across the stack from schema design to production deployment on Render and Netlify.</p>
+    <p>Outside client work, I build my own projects to test ideas end-to-end: a social platform with real-time chat, an AI-powered resume analyzer, and an e-commerce platform with payment integration. I also use AI tools like Claude for code review and debugging as part of my normal workflow.</p>
+    <div class="stat-row">
+      <div class="stat"><span class="num">2 yrs</span><span class="label">professional experience</span></div>
+      <div class="stat"><span class="num">3</span><span class="label">full-stack apps shipped</span></div>
+      <div class="stat"><span class="num">3</span><span class="label">platforms deployed to (Render, Netlify, Docker)</span></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="route-tag"><span class="method">GET</span> /skills</div>
+    <h2>Skills</h2>
+
+    <div class="skill-group">
+      <h3>languages</h3>
+      <div class="chip-row">
+        <span class="chip">Python</span><span class="chip">JavaScript (ES6+)</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>frontend</h3>
+      <div class="chip-row">
+        <span class="chip">React.js</span><span class="chip">Redux</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Bootstrap</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>backend</h3>
+      <div class="chip-row">
+        <span class="chip">Django</span><span class="chip">Django REST Framework</span><span class="chip">Flask</span><span class="chip">REST API Design</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>databases</h3>
+      <div class="chip-row">
+        <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">SQLite</span><span class="chip">Redis</span><span class="chip">SQL</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>auth &amp; security</h3>
+      <div class="chip-row">
+        <span class="chip">JWT Authentication</span><span class="chip">OAuth basics</span><span class="chip">RBAC</span><span class="chip">CRUD</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>tools &amp; devops</h3>
+      <div class="chip-row">
+        <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Docker</span><span class="chip">Postman</span><span class="chip">Render</span><span class="chip">Netlify</span><span class="chip">VS Code</span><span class="chip">CI/CD basics</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>ai tooling</h3>
+      <div class="chip-row">
+        <span class="chip">Google Gemini API</span><span class="chip">Claude AI</span><span class="chip">PDFPlumber</span><span class="chip">Pandas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="route-tag"><span class="method">GET</span> /experience</div>
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-meta">
+        <span class="status">200 OK</span>
+        May 2024 – Jun 2026
+      </div>
+      <div>
+        <h3>Software Developer — Full Stack</h3>
+        <span class="co">METXR Studios Pvt Ltd</span>
+        <ul>
+          <li>Built and shipped full-stack web applications using Python, Django, React.js, and Bootstrap, from design through production deployment.</li>
+          <li>Designed REST APIs connecting the React frontend to Django backend services across multiple releases.</li>
+          <li>Implemented JWT authentication and role-based authorization; managed MySQL schema design, CRUD operations, and query optimization.</li>
+          <li>Used Claude AI for code review, debugging, and QA as part of the regular release process.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">
+        <span class="status">200 OK</span>
+        Jan 2024 – Apr 2024
+      </div>
+      <div>
+        <h3>Python Full Stack Developer Intern</h3>
+        <span class="co">Inmakes Infotech, Kochi</span>
+        <ul>
+          <li>Built responsive full-stack apps with Django, React.js, and Bootstrap.</li>
+          <li>Built REST APIs and designed MySQL/SQLite schemas for CRUD-based features.</li>
+          <li>Assisted with authentication modules and core backend logic.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work">
+    <div class="route-tag"><span class="method">GET</span> /projects</div>
+    <h2>Projects</h2>
+
+    <div class="project-card">
+      <img class="project-shot" src="images/project-letsconnect.jpg" alt="LetsConnect login screen">
+      <div class="project-head">
+        <h3>Let's Connect</h3>
+        <span class="badge live">live</span>
+      </div>
+      <div class="stack-line">Django REST Framework · React.js · JWT · PostgreSQL · WebSockets</div>
+      <p>A full-stack social platform with authentication, posts, likes, comments, follow/unfollow, profiles, notifications, and real-time chat. Backend deployed on Render, frontend on Netlify.</p>
+      <div class="project-links">
+        <a href="https://letsconnect-anuranj.netlify.app" target="_blank" rel="noopener">Live demo</a>
+        <a href="https://github.com/anuranjkrishna/letsconnect" target="_blank" rel="noopener">Code</a>
+      </div>
+      <details class="case-study">
+        <summary>Case study</summary>
+        <div class="cs-row">
+          <span class="cs-label">problem</span>
+          <p>Bring posts, likes, comments, follow/unfollow, notifications, and real-time chat together in one connected app.</p>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">approach</span>
+          <p>DRF + PostgreSQL backend, JWT auth, React frontend, and WebSockets for chat instead of polling.</p>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">hard part</span>
+          <p>Keeping chat instant without repeated API calls — solved with WebSocket-based messaging.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="project-card">
+      <img class="project-shot" src="images/project-resume-analyzer.jpg" alt="AI Resume Analyzer app screen">
+      <div class="project-head">
+        <h3>AI Resume Analyzer</h3>
+        <span class="badge live">live</span>
+      </div>
+      <div class="stack-line">Python · Flask · PDFPlumber · SQLite · Google Gemini API</div>
+      <p>Scores resumes against job descriptions with ATS-style scoring and skill-gap analysis. Uses Gemini for resume feedback, personalized interview questions, and career recommendations.</p>
+      <div class="project-links">
+        <a href="https://ai-resume-analyzer-ofil.onrender.com/" target="_blank" rel="noopener">Live demo</a>
+      </div>
+      <details class="case-study">
+        <summary>Case study</summary>
+        <div class="cs-row">
+          <span class="cs-label">problem</span>
+          <p>Job seekers can't easily tell if a resume matches a role or passes ATS filters.</p>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">approach</span>
+          <p>Flask backend extracts resume text with PDFPlumber, then sends it with the job description to the Gemini API for scoring and feedback.</p>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">hard part</span>
+          <p>Resumes vary wildly in layout — solved with reliable PDF text extraction plus prompt engineering for consistent AI output.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="project-card">
+      <img class="project-shot" src="images/project-ecommerce.jpg" alt="E-commerce platform product listing">
+      <div class="project-head">
+        <h3>E-commerce Platform</h3>
+        <span class="badge built">built</span>
+      </div>
+      <div class="stack-line">Django REST Framework · React.js (Vite) · PostgreSQL · Razorpay</div>
+      <p>A full-stack shopping platform with product catalog, cart, JWT authentication, and Razorpay payment integration supporting both COD and online payments.</p>
+      <div class="project-links">
+        <a href="https://github.com/anuranjkrishna/ecommerce-platform" target="_blank" rel="noopener">Code</a>
+      </div>
+      <details class="case-study">
+        <summary>Case study</summary>
+        <div class="cs-row">
+          <span class="cs-label">problem</span>
+          <p>A complete shopping flow — browse, cart, checkout, COD or Razorpay payment — with a clean API/UI split.</p>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">approach</span>
+          <p>DRF backend with JWT auth, React (Vite) frontend with a Cart Context, Razorpay integrated in test mode.</p>
+        </div>
+        <div class="cs-row">
+          <span class="cs-label">hard part</span>
+          <p>Keeping cart state in sync between frontend and backend — solved with dedicated add/update/remove cart APIs.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="route-tag"><span class="method">GET</span> /education</div>
+    <h2>Education</h2>
+    <div class="edu-item">
+      <div>
+        <div>MCA</div>
+        <div class="school">Manipal University Jaipur (Online)</div>
+      </div>
+      <div class="when">2026 – Present</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div>Bachelor's Degree</div>
+        <div class="school">Kannur University</div>
+      </div>
+      <div class="when"></div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div>PG Diploma in Cooperation</div>
+        <div class="school">ICM Kannur</div>
+      </div>
+      <div class="when"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="route-tag"><span class="method post">POST</span> /contact</div>
+    <h2>Get in touch</h2>
+    <p style="margin-bottom:22px;">Hiring, freelance work, or just want to talk about a project — send a message and it'll land straight in my inbox.</p>
+
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgaenbdj" method="POST">
+      <div class="field">
+        <label for="name">name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="message">message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© <span id="year"></span> Anuranjkrishna K</span>
+  <span>Built with HTML, CSS &amp; JS — deployed on Netlify</span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('#routeNav a');
+  const setActive = () => {
+    let current = sections[0] ? sections[0].id : '';
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(sec => {
+      if (scrollPos >= sec.offsetTop) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  };
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // Contact form (Formspree) — replace the form's action URL with your own Formspree endpoint.
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'form-status';
+    status.textContent = 'Sending…';
+    status.style.display = 'block';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = '200 OK — message sent. Thanks, I\'ll reply soon.';
+        status.classList.add('ok');
+        form.reset();
+      } else {
+        status.textContent = '400 — something went wrong. Try emailing directly instead.';
+        status.classList.add('err');
+      }
+    } catch (err) {
+      status.textContent = '500 — network error. Try emailing directly instead.';
+      status.classList.add('err');
+    }
+  });
+</script>
+
+</body>
+</html>
